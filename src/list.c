@@ -142,6 +142,7 @@ int list_del_data_all(t_list* list, void* data, int (*comp)(const void* a, const
 		}
 		item = item->next;
 	}
+	*list = sentinel->next;
 	free(sentinel);
 
 	return n;
