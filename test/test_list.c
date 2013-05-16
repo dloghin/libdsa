@@ -17,37 +17,45 @@
  * along with libdsa.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "heap.h"
+#include "list.h"
 
-int comp_int(const void* a, const void* b)
-{
-	int xa = *(int*)a;
-	int xb = *(int*)b;
-	return xb - xa;
+int ints[6] = {2, 4, 3, 6, 1, 5};
+
+void print_int(void* data) {
+	int* d = (int*)data;
+	if (d != NULL)
+		printf("%d ", *d);
+	else
+		printf("Error: NULL data\n");
 }
 
-int main() {
-	int i;
-	int n = 8;
-	int vals[8] = {9, 4, 5, 3, 1, 2, 10, 3};
+int comp_int(const void* a, const void* b) {
+	int xa = *(int*)a;
+	int xb = *(int*)b;
 
-	heap_int_t* heap = NULL;
+	return xa-xb;
+}
 
-	build_int_heap_copy(&heap, MAX_HEAP, n, vals);
+int main(int argc, char** argv) {
+	t_list L = NULL;
 
-	print_tree_int_heap(heap);
+	list_add_first(&L, ints);
+	list_add_order(&L, ints+1, comp_int);
+	list_add_order(&L, ints+2, comp_int);
+	list_add_order(&L, ints+3, comp_int);
+	list_add_order(&L, ints+5, comp_int);
+	list_add_order(&L, ints+4, comp_int);
 
-	destroy_int_heap(&heap);
+	list_del_data_all(&L, ints+4, comp_int);
 
-	// heap_sort_int(n, vals);
-	// for (i=0; i<n; i++) printf("%d ", vals[i]);
-	void** avals = (void**)malloc(n*sizeof(void*));
-	for (i=0; i<n; i++) avals[i] = vals+i;
+	if (L == NULL)
+		return -1;
 
-	heap_sort_void(n, avals, comp_int);
+	list_apply_func(L, print_int);
 
-	for (i=0; i<n; i++) printf("%d ", *(int*)(avals[i]));
-	free(avals);
+	list_destroy(L);
+
+	printf("\nList Test End.\n");
 
 	return 0;
 }
