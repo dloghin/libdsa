@@ -31,7 +31,9 @@ for TEST in ${TESTS[@]}
 do
 	echo "=== Test: $TEST ==="
 	./$TEST
-	if [ $? -ne 0 ]; then
+	RET=$?
+	if [ $RET -ne 0 ]; then
+		echo "*** Test $TEST failed with $RET!"
 		FAILED=$(($FAILED + 1))
 	fi	
 done
