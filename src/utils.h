@@ -25,6 +25,10 @@
  * @brief Utilities Declarations
  */
 
+#include "common.h"
+
 int mylog2(int n);
+
+void print_array_int(int* a, int n);
 
 #endif

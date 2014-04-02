@@ -38,3 +38,13 @@ int mylog2(int n)
 	}
 	return log;
 }
+
+void print_array_int(int* a, int n)
+{
+	int i;
+	FILE* f = stdout;
+
+	for (i=0; i<n; i++)
+		fprintf(f, "%d ", a[i]);
+	fprintf(f, "\n");
+}
