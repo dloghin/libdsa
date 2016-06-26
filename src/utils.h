@@ -29,6 +29,7 @@
 
 int mylog2(int n);
 
-void print_array_int(int* a, int n);
+void print_array_int(FILE* f, int* a, int n);
 
+void print_matrix_int(FILE* f, int* a, int n, int m);
 #endif

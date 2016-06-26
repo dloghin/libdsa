@@ -39,12 +39,22 @@ int mylog2(int n)
 	return log;
 }
 
-void print_array_int(int* a, int n)
+void print_array_int(FILE* f, int* a, int n)
 {
 	int i;
-	FILE* f = stdout;
 
 	for (i=0; i<n; i++)
 		fprintf(f, "%d ", a[i]);
 	fprintf(f, "\n");
+}
+
+void print_matrix_int(FILE* f, int* a, int n, int m)
+{
+        int i, j;
+
+        for (i=0; i<n; i++) {
+		for (j=0; j<m; j++)
+	                fprintf(f, "%d ", a[i*m+j]);
+        	fprintf(f, "\n");
+	}
 }
