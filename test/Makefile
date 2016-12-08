@@ -27,5 +27,8 @@ all: $(TARGETS)
 %.exe: %.c
 	$(CC) $(CFLAGS) $^ -o $@ $(LDFLAGS)
 
+test_asynctask.exe: test_asynctask.c
+	$(CC) $(CFLAGS) $^ -o $@ $(LDFLAGS) -pthread
+
 clean:
 	rm -f $(TARGETS)
