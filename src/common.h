@@ -27,8 +27,11 @@
 
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 
 enum _e_ret_code {
+	EERROR = -5,
+	EINVALARG = -4,
 	EBOUNDS = -3,
 	ENULL = -2,
 	EALLOC = -1,
